@@ -22,7 +22,7 @@ def create_ball(space, radius, mass):
     shape = pymunk.Circle(body, radius) # Create a circle shape with the body and radius
     shape.mass = mass
     shape.color = (255, 0, 0, 100) # Set the color of the shape
-    shape.add(body, shape)  # Add the shape to the body
+    space.add(body, shape)  # Add the shape to the body
     return shape
 
     
@@ -35,7 +35,7 @@ def run(window, width, height):
     space = pymunk.Space() # Create a space for the object to move in
     space.gravity = (0, 981) # Set the gravity
 
-    ball = create_ball(space, 50, 1) # Create a ball
+    ball = create_ball(space, 30, 10) # Create a ball
     draw_options = pymunk.pygame_util.DrawOptions(window) # Draw options for the objects
 
     while run:
@@ -49,4 +49,4 @@ def run(window, width, height):
     pygame.quit() # Quit Pygame
 
 if __name__ == "__main__":
-    run(window, WIDTH, HEIGHT)
+    run(window, WIDTH, HEIGHT) # Run the game
