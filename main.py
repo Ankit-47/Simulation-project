@@ -31,8 +31,11 @@ def run(window, width, height):
     clock = pygame.time.Clock()
     fps = 60
     dt = 1.0 / fps  # delta time =  dt
+
     space = pymunk.Space() # Create a space for the object to move in
     space.gravity = (0, 981) # Set the gravity
+
+    ball = create_ball(space, 50, 1) # Create a ball
     draw_options = pymunk.pygame_util.DrawOptions(window) # Draw options for the objects
 
     while run:
