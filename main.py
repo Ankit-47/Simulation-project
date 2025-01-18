@@ -62,6 +62,10 @@ def run(window, width, height):
             if event.type == pygame.QUIT:
                 run = False
 
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                ball.body.apply_impulse_at_local_point((10000, 0), (0, 0))
+
+
         draw(space,window,draw_options)   
         space.step(dt) # Step the space in time   
         clock.tick(fps)
