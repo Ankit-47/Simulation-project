@@ -27,6 +27,8 @@ def create_boundaries(space, width, height):
         body = pymunk.Body(body_type=pymunk.Body.STATIC) # Create a static body
         body.position = pos
         shape = pymunk.Poly.create_box(body, size)
+        shape.elasticity = 0.4
+        shape.friction = 0.5
         space.add(body, shape)
 
 
@@ -35,6 +37,8 @@ def create_ball(space, radius, mass):
     body.position = (300, 300) # Set the position of the body
     shape = pymunk.Circle(body, radius) # Create a circle shape with the body and radius
     shape.mass = mass
+    shape.elasticity = 0.95 # Set the elasticity of the shape
+    shape.friction = 0.9 # Set the friction of the shape
     shape.color = (255, 0, 0, 100) # Set the color of the shape
     space.add(body, shape)  # Add the shape to the body
     return shape
