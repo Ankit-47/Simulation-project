@@ -36,7 +36,7 @@ def create_boundaries(space, width, height):
         space.add(body, shape)
 
 
-def create_ball(space, radius, mass):
+def create_ball(space, radius, mass, pos):
     body = pymunk.Body() # Create a body with mass and moment of inertia
     body.position = pos  # Set the position of the body
     shape = pymunk.Circle(body, radius) # Create a circle shape with the body and radius
@@ -70,9 +70,15 @@ def run(window, width, height):
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if not ball:
-                    ball = create_ball(space, 20, 1)
-                    pressed_pos = pygame.mouse.get_pos(space, 30, 10, pressed_pos)
-                ball.body.apply_impulse_at_local_point((10000, 0), (0, 0))
+                    pressed_pos = pygame.mouse.get_pos()
+                    ball = create_ball(space, 30, 10, pressed_pos)
+                elif pressed_pos:
+                    ball.body.apply_impulse_at_local_point((10000, 0), (0, 0))
+                    pressed_pos = None
+                else:
+                    space.remove(ball.body, ball)
+                    ball = None
+                
 
 
         draw(space,window,draw_options)   
